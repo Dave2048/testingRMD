@@ -1,0 +1,74 @@
+---
+title: "GapMinder Analysis"
+author: "Dave Guan"
+date: "October 14, 2019"
+output: 
+  html_document:
+    keep_md: yes
+    fig_caption: yes
+    toc: yes
+---
+# Introduction
+ 
+change "html_document" to "pdf_document", after latex installation
+Here's my first rmd document
+table of content (toc) start with "#"
+
+# Let's embed some R code
+
+We'll write an R chunk that loads the tidyverse package and then read in the gapminder data set, use the back tip near "1" or ctrl+alt+i
+```{r}
+library(tidyverse)
+gm<- read.csv("gapminder.csv")
+```
+
+#investigate gm data
+let's take a look at GM
+
+```{r}
+head(gm)
+```
+
+#Our first plot
+
+showing gdp per capia on x and life exp on y
+
+```{r, fig.cap="Life expectancy vs GDP"}
+ggplot(gm, aes(x=gdpPercap, y=lifeExp))+geom_point()
+```
+
+#A better plot
+
+```{r, fig.cap="Life expectancy vs GDP"}
+ggplot(gm, aes(x=gdpPercap, y=lifeExp))+geom_point(aes(col=continent))+scale_x_log10()
+```
+
+#possible chunk options
+https://yihui.name/knitr/options/
+options include: 
+-echo (true by default, whether to include code in output)
+-results
+  -hide (hide the results)
+  -hold (hold the result until end of chunk)
+-include (true by default, if false then the code will not be run)
+-fig.width, fig.height 
+-cache (false by default) if true, will only re-run the code if any changes. result will be cached
+
+
+```{r, fig.cap="Life expectancy vs GDP", fig.height=5, fig.width=10}
+ggplot(gm, aes(x=gdpPercap, y=lifeExp))+geom_point(aes(col=continent))+scale_x_log10()
+```
+
+
+#table in RMarkdown
+see some data using head
+```{r}
+head(gm)
+```
+now head function as a nicely formatted table
+
+```{r}
+library(knitr)
+kable(head(gm))
+```
+
