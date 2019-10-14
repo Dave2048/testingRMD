@@ -17,9 +17,9 @@ table of content (toc) start with "#"
 # Let's embed some R code
 
 We'll write an R chunk that loads the tidyverse package and then read in the gapminder data set, use the back tip near "1" or ctrl+alt+i
-```{r}
+```{r,message=FALSE}
 library(tidyverse)
-gm<- read.csv("gapminder.csv")
+gm<- read.csv("../data/gapminder.csv")
 ```
 
 #investigate gm data
